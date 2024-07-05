@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fascinating Felines</title>
+    <link rel="icon" href="favicon.png">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            position: relative;
+        }
+        .parallax::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .parallax-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .content {
+            background-color: #f8f8f8;
+            padding: 50px 80px;
+            text-align: center;
+            opacity: 1; /* Changed from 0 to 1 */
+            transform: translateY(0); /* Removed initial transform */
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        h1 {
+            font-size: 4em;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #333; /* Added to ensure visibility */
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666; /* Added to ensure visibility */
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax" style="background-image: url('cat.jpeg');">
+        <div class="parallax-content">
+            <h1>Fascinating Felines</h1>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>The Wonderful World of Cats</h2>
+        <p>Cats have been beloved companions to humans for thousands of years. Known for their independence, grace, and playful nature, these fascinating creatures have captured our hearts and imaginations.</p>
+        <a href="https://en.wikipedia.org/wiki/Cat" class="btn" target="_blank">Learn More</a>
+    </div>
+
+    <div class="parallax" style="background-image: url('cat.jpeg');">
+        <div class="parallax-content">
+            <h2>Graceful and Mysterious</h2>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>Did You Know?</h2>
+        <p>Cats can make over 100 different sounds, while dogs can only make about 10. Their hearing is also much more sensitive than humans and dogs.</p>
+        <a href="https://en.wikipedia.org/wiki/Cat" class="btn" target="_blank">Learn More</a>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var parallaxes = document.getElementsByClassName('parallax');
+            for (var i = 0; i < parallaxes.length; i++) {
+                var parallax = parallaxes[i];
+                var yPos = -(window.pageYOffset / 2);
+                parallax.style.backgroundPosition = '50% ' + yPos + 'px';
+            }
+        });
+
+        function fadeInContent() {
+            var contents = document.getElementsByClassName('content');
+            for (var i = 0; i < contents.length; i++) {
+                var content = contents[i];
+                var contentPosition = content.getBoundingClientRect().top;
+                var screenPosition = window.innerHeight / 1.3;
+                if (contentPosition < screenPosition) {
+                    content.style.opacity = '1';
+                    content.style.transform = 'translateY(0)';
+                }
+            }
+        }
+
+        window.addEventListener('scroll', fadeInContent);
+        window.addEventListener('load', fadeInContent);
+    </script>
+</body>
+</html>
